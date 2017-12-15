@@ -1,0 +1,51 @@
+group 'com.company'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'scala'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'functions-project'
+    version =  '0.1.0'
+}
+dependencyManagement {
+    imports {
+        mavenBom 'com.vaadin:vaadin-bom:8.0.0'
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "http://oss.sonatype.org/content/repositories/vaadin-snapshots/" }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile("com.vaadin:vaadin-spring-boot-starter")
+    compile ('org.apache.spark:spark-core_2.10:2.2.0')
+    compile group: 'org.apache.spark', name: 'spark-mllib_2.10', version: '2.2.0'
+    compile group: 'gov.nist.math', name: 'jama', version: '1.0.3'
+}
+configurations.all {
+    exclude group: "org.slf4j", module: "slf4j-log4j12"
+    exclude group: "log4j", module: "log4j"
+}
+
+
+

@@ -1,0 +1,14 @@
+@import "variables";
+@import "../valo/valo";
+
+.valo-flat {
+  @include valo;
+}
+
+.v-label-h1 {
+  margin-bottom: 20px !important;
+}
+.v-panel-caption {
+	font-size: 18px !important;
+	background-color: #BCD19D !important;
+}
